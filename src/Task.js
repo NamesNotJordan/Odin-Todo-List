@@ -5,6 +5,6 @@ export default function Task(title, description, dueDate, priority) {
     this.dueDate = dueDate;
     this.priority = priority;
 
-    
+    //TODO:Accessor methods maybe?
     
 }
