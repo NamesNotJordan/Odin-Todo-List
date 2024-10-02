@@ -1,6 +1,11 @@
 // A list of related Tasks
 
-export default function Project(projectName, description) {
-    this.projectName = projectName;
-    this.description = description;
+class Project {
+    constructor(projectName, description){
+        this.projectName = projectName;
+        this.description = description;
+        this.taskList = [];
+    }
 }
+
+export default Project;
