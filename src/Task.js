@@ -5,8 +5,6 @@ class Task {
         this.dueDate = dueDate; // Date object
         this.priority = priority; // int
     }
-    
-
-    //TODO:Accessor methods maybe?
+    //TODO: method to create and return DOM element
     
 }
