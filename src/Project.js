@@ -6,6 +6,13 @@ class Project {
         this.description = description;
         this.taskList = [];
     }
+    // Sort tasks:
+    byPriority(){
+        
+    }
+    byDueDate(){
+        
+    }
 }
 
 export default Project;
