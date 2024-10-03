@@ -48,6 +48,15 @@
     font-style: normal;
 }
 
+body {
+    margin: 0%;
+    padding: 0%;
+    background-color: var(--cyber-darkest-blue);
+}
+header{
+    height: 20%;
+    border: 2px solid var(--cyber-red);
+}
 h1{
     font-family: 'Rajdhani-Bold';
     size: 2rem;
