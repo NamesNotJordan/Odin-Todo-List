@@ -51,13 +51,60 @@
 body {
     margin: 0%;
     padding: 0%;
-    background-color: var(--cyber-darkest-blue);
+    color: var(--cyber-red);
+    font-family: "Rajdhani-Regular";
+
+    height: 100dvh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    background: rgb(14,14,23);
+    background: linear-gradient(29deg, rgba(14,14,23,1) 0%, rgba(51,16,24,1) 80%, rgba(85,18,25,1) 100%); 
+    
+    display: grid;
+    grid-template-columns: 20%  auto;
+    grid-template-rows: 150px  auto;
 }
 header{
-    height: 20%;
     border: 2px solid var(--cyber-red);
+    background: none;
+    display: flex;
+    justify-content: center;
+    
+    grid-area: 1 / 1 / 1 / span 2;
 }
 h1{
+    margin: 0%;
     font-family: 'Rajdhani-Bold';
-    size: 2rem;
+    color: var(--cyber-red);
+    font-size: 5rem;
+}
+h2{
+    font-family: 'Rajdhani-Bold';
+    color: var(--cyber-red);
+    font-size: 3rem;
+}
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--cyber-red);
+    padding: 10px 30px;
+    grid-area: 2 / 1 / 2 /1;
+}
+button{
+    background: none;
+    border: none;
+    color: var(--cyber-orange);
+    font-family: 'Rajdhani-SemiBold';
+    font-size: 3rem;
+    text-align: start;
+}
+button:hover{
+    color: var(--cyber-cyan);
+}
+.project-container {
+    
+}
+.task-list{
+    grid-area: 2 / 2;
 }
