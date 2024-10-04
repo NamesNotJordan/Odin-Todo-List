@@ -102,6 +102,10 @@ button{
 button:hover{
     color: var(--cyber-cyan);
 }
+.cyber-card{
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+}
+
 .project-container {
     
 }
