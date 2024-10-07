@@ -6,12 +6,17 @@ class Project {
         this.description = description;
         this.taskList = [];
     }
-    // Sort tasks:
-    byPriority(){
-        
+    toDOM() {
+        taskComps = this.taskList.map(task => task.toDOM());
     }
-    byDueDate(){
-        
+    addTask(task) {
+        this.taskList.add(task);
+    }
+    setName(newName){
+        this.projectName = newName;
+    }
+    setDescription(description){
+        this.description = description;
     }
 }
 
