@@ -6,5 +6,6 @@ class Task {
         this.priority = priority; // int
     }
     //TODO: method to create and return DOM element
+    toDOM(){}
     
 }
