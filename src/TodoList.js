@@ -1,22 +1,28 @@
 // Contains the logic for managing projects and tasks
 import Task from "./Task";
 import Project from "./Project";
-import { isToday } from "date-fns";
+import { isToday, isThisWeek} from "date-fns";
 
 //TODO:Edit Tasks
 //TODO:Edit Projects
 //TODO:Add lists to Local Storage when creating or adding
 
 export default class TodoList {
-    projectList = [new Project("Inbox")];
-
+    constructor(){
+        if (localStorage.getItem("projects")) {
+            this.projectList = localStorage.getItem("projects")
+        }
+        else {
+            this.projectList = [new Project("Inbox")];
+        }
+    }
     loadProjects() {
         if (localStorage.getItem("projects")) {
-            projectList = localStorage.getItem("projects")
+            this.projectList = localStorage.getItem("projects")
         }
     }
     saveToStorage() {
-        localStorage.setItem("projects", projectList);
+        localStorage.setItem("projects", this.projectList);
     }
     
     getProject(projectName){
@@ -26,10 +32,34 @@ export default class TodoList {
 
     deleteProject(targetProject){ 
         projectList = projectList.filter(p => p !== targetProject);
+        this.saveToStorage();
+    }
+
+    getProjectList(){
+        return this.projectList;
     }
 
     getTodaysTasks(){
-        
+        let todaysTasks = [];
+        this.projectList.forEach(p => {
+            p.getTasks.forEach(t => {
+                if (isToday(t.getDate())) {
+                    todaysTasks.push(t);
+                }
+            });
+        });
+        return todaysTasks;
+    }
+    getThisWeeksTasks(){
+        let weekTasks = [];
+        this.projectList.forEach(p => {
+            p.getTasks.forEach(t => {
+                if (isThisWeek(t.getDate())) {
+                    weekTasks.push(t);
+                }
+            });
+        });
+        return weekTasks;
     }
 
 }
