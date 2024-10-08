@@ -27,6 +27,7 @@ function saveToStorage() {
 function addTaskToList(task) {
     saveToStorage();
 }
-function deleteTask(task){
-    
+
+function deleteProject(targetProject){ 
+    projectList = projectList.filter(p => p!== targetProject);
 }

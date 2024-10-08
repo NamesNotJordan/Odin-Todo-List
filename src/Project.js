@@ -6,20 +6,17 @@ class Project {
         this.description = description;
         this.taskList = [];
     }
-    toDOM() {
-        taskComps = this.taskList.map(task => task.toDOM());
-    }
     addTask(task) {
         this.taskList.add(task);
     }
     setName(newName){
         this.projectName = newName;
     }
-    setDescription(description){
-        this.description = description;
+    deleteTask(targetTask){
+        this.taskList = this.taskList.filter(t => t !== targetTask)
     }
-    deleteTask(task){
-        
+    sortTasksByPrio(){
+        this.taskList.sort((a,b) => a.priority - b.priority)
     }
 }
 
