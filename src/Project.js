@@ -1,6 +1,6 @@
 // A list of related Tasks
 
-class Project {
+export default class Project {
     constructor(projectName){
         this.projectName = projectName;
         this.taskList = [];
@@ -21,5 +21,3 @@ class Project {
         this.taskList.sort((a,b) => a.priority - b.priority)
     }
 }
-
-export default Project;
