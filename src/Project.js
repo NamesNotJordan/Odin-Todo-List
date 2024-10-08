@@ -17,6 +17,12 @@ export default class Project {
     deleteTask(targetTask){
         this.taskList = this.taskList.filter(t => t !== targetTask)
     }
+    getTasks(){
+        return this.taskList;
+    }
+    setTaskList(newList){
+        this.taskList = newList;
+    }
     sortTasksByPrio(){
         this.taskList.sort((a,b) => a.priority - b.priority)
     }
