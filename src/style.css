@@ -110,6 +110,6 @@ button:hover{
 .project-container {
     
 }
-.task-list{
+.task-container{
     grid-area: 2 / 2;
 }
