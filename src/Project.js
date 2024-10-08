@@ -1,16 +1,18 @@
 // A list of related Tasks
 
 class Project {
-    constructor(projectName, description){
+    constructor(projectName){
         this.projectName = projectName;
-        this.description = description;
         this.taskList = [];
-    }
-    addTask(task) {
-        this.taskList.add(task);
     }
     setName(newName){
         this.projectName = newName;
+    }
+    getName(){
+        return this.projectName;
+    }
+    addTask(task) {
+        this.taskList.add(task);
     }
     deleteTask(targetTask){
         this.taskList = this.taskList.filter(t => t !== targetTask)
