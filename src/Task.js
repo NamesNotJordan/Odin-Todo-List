@@ -1,24 +1,35 @@
-class Task {
-    constructor(title, description, dueDate, priority){
-        this.title = title;
+export default class Task {
+    constructor(name, description, dueDate, priority){
+        this.name = name;
         this.description = description;
         this.dueDate = dueDate; // Date object
         this.priority = priority; // int
     }
-    //TODO: method to create and return DOM element
-    toDOM(){
-        let div = document.createElement("div");
-        div.classList.add("task","cyber-card");
-        let label = document.createElement("p");
-        label.classList.add("task-name");
-        label.innerHTML = this.title;
-        let date = document.createElement("p");
-        date.classList.add("task-date");
-        date.innerHTML = this.dueDate;
 
-        div.appendChild(label);
-        div.appendChild(date);
-
+    // Accessors:
+    getName(){
+        return this.title;
+    }
+    setName(name){
+        this.name = name;
+    }
+    getDescription() {
+        return this.description;
+    }
+    setDescription(newDescription) {
+        this.description = newDescription;
+    }
+    getDate(){
+        return this.dueDate;
+    }
+    setDate(newDate){
+        this.dueDate = newDate;
+    }
+    getPriority(){
+        return this.priority;
+    }
+    setPriority(newPriority){
+        this.priority = newPriority;
     }
     
 }
