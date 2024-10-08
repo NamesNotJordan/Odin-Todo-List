@@ -18,6 +18,9 @@ class Project {
     setDescription(description){
         this.description = description;
     }
+    deleteTask(task){
+        
+    }
 }
 
 export default Project;
