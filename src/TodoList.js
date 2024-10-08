@@ -7,8 +7,8 @@ import Project from "./Project";
 //TODO:Add lists to Local Storage when creating or adding
 
 
-const today = new Date();
-projectList = [];
+const inboxProject = new Project("Inbox", "All your loose tasks");
+projectList = [inboxProject];
 
 
 
