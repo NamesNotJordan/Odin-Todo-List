@@ -11,10 +11,26 @@ import {format} from "date-fns";
 export default class UI {
     todoList = new TodoList();
     // Load content
+    loadBase(){}
 
+    loadProjects(){}
 
+    loadTasks(){}
+
+    loadProjectContent(){}
+
+    // Clearing Content
+    clear(){}
+
+    clearProjectContent(){}
+
+    clearProjects(){}
+
+    clearTasks(){}
+
+    closePopUps(){}
     // Create Content
-    static createTaskCard(task){
+    createTaskCard(task){
         let taskList = document.querySelector(".task-list");
         let taskCard = document.createElement("li");
         taskCard.classList.add("task","cyber-card");
@@ -29,7 +45,7 @@ export default class UI {
     createProjectCard(project) {
         let projectUl = document.querySelector(".project-ul");
         
-        let projectDiv = document.createElement("div");
+        let projectDiv = document.createElement("button");
         projectDiv.classList.add("project");
         projectUl.appendChild(projectDiv);
 
@@ -39,5 +55,7 @@ export default class UI {
         projectDiv.appendChild(projectLabel);
     }
 
-    // Event Listeners
+    // Project Event Listeners
+
+    //Task Event Listeners
 }
