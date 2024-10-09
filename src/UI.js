@@ -9,7 +9,7 @@ import {format} from "date-fns";
 //TODO:Exapnd task for more details
 
 export default class UI {
-    TodoList = new TodoList();
+    todoList = new TodoList();
     // Load content
 
 
@@ -24,12 +24,20 @@ export default class UI {
         taskLabel.classList.add("task-name");
         taskLabel.innerHTML = task.getName();
         taskCard.appendChild(taskLabel);
-
-        let 
-        
     }
 
-    static createProjectCard(project) {}
+    createProjectCard(project) {
+        let projectUl = document.querySelector(".project-ul");
+        
+        let projectDiv = document.createElement("div");
+        projectDiv.classList.add("project");
+        projectUl.appendChild(projectDiv);
+
+        let projectLabel = document.createElement("p");
+        projectLabel.classList.add("project-label");
+        projectLabel.innerHTML = project.getName();
+        projectDiv.appendChild(projectLabel);
+    }
 
     // Event Listeners
 }
