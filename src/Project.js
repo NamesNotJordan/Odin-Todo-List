@@ -14,10 +14,13 @@ export default class Project {
     addTask(task) {
         this.taskList.add(task);
     }
-    deleteTask(targetTask){
-        this.taskList = this.taskList.filter(t => t !== targetTask)
+    deleteTask(targetTaskName){
+        this.taskList = this.taskList.filter(t => t.getName() !== targetTaskName);
     }
-    getTasks(){
+    getTask(taskName){
+        return this.taskList.filter(t => t.getName() == taskName);
+    }
+    getTaskList(){
         return this.taskList;
     }
     setTaskList(newList){
