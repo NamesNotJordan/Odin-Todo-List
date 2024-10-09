@@ -20,15 +20,24 @@ export default class UI {
     loadProjectContent(){}
 
     // Clearing Content
-    clear(){}
+    clear(){
+        this.clearProjects();
+        this.clearTasks();
+    }
 
-    clearProjectContent(){}
+    clearProjectContent(){
+    }
 
-    clearProjects(){}
+    clearProjects(){
+        document.querySelector("project-ul").innerHTML = '';
+    }
 
-    clearTasks(){}
+    clearTasks(){
+        document.querySelector(".task-ul").innerHTML ='';
+    }
 
     closePopUps(){}
+    
     // Create Content
     createTaskCard(task){
         let taskList = document.querySelector(".task-list");
