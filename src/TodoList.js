@@ -24,6 +24,11 @@ export default class TodoList {
     saveToStorage() {
         localStorage.setItem("projects", this.projectList);
     }
+
+    addProject(project){
+        this.projectList.push(project);
+        this.saveToStorage();
+    }
     
     getProject(projectName){
         index = this.projectList.find(p => p.getName = projectName);
@@ -37,6 +42,16 @@ export default class TodoList {
 
     getProjectList(){
         return this.projectList;
+    }
+
+    addTask(projectName, task){
+        this.getProject(projectName).addTask(task);
+        this.saveToStorage();
+    }
+
+    deleteTask(projectName, taskName){
+        this.getProject(projectName).deleteTask(taskName);
+        this.saveToStorage();
     }
 
     getTodaysTasks(){
@@ -61,5 +76,4 @@ export default class TodoList {
         });
         return weekTasks;
     }
-
 }
