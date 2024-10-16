@@ -9,11 +9,22 @@ import {format} from "date-fns";
 //TODO:Exapnd task for more details
 
 export default class UI {
-    todoList = new TodoList();
+    constructor(){
+        this.todoList = new TodoList();
+        this.activeProjectName = '';
+    }
     // Load content
     loadBase(){}
 
-    loadProjects(){}
+    loadProjects(){
+        this.todoList.getProjectList().forEach((project) =>{
+            if (
+                project.getName() !== 'Inbox' &&
+                project.getName() !== 'Today' &&
+                project.getName() !== 'This Week' 
+            )
+        })
+    }
 
     loadTasks(){}
 
@@ -38,6 +49,12 @@ export default class UI {
 
     closePopUps(){}
     
+    closeAllInputs(){}
+
+    handleEscape(e){
+        if (e.key === 'Escape') 
+            this.closePopUps();
+    }
     // Create Content
     createTaskCard(task){
         let taskList = document.querySelector(".task-list");
@@ -64,7 +81,8 @@ export default class UI {
         projectDiv.appendChild(projectLabel);
     }
 
-    // Project Event Listeners
+    addProject(){
+        //Get data from inputs
 
-    //Task Event Listeners
+    }
 }
