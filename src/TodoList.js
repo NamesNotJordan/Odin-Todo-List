@@ -13,7 +13,7 @@ export default class TodoList {
             this.projectList = localStorage.getItem("projects")
         }
         else {
-            this.projectList = [new Project("Inbox")];
+            this.projectList = [new Project("Inbox"), new Project("Today"), new Project('This Week')];
         }
     }
     loadProjects() {
@@ -55,11 +55,13 @@ export default class TodoList {
     }
 
     getTodaysTasks(){
-        let todaysTasks = [];
+        this.getProject('Today').setTaskList([]); //Empty today's tasks
         this.projectList.forEach(p => {
             p.getTasks.forEach(t => {
                 if (isToday(t.getDate())) {
-                    todaysTasks.push(t);
+                    let cloneName = `${t.getName()} [${p.getName}]`;
+                    let cloneTask = new Task()
+                    this.getProject('Today').addTask(t)
                 }
             });
         });
@@ -68,6 +70,9 @@ export default class TodoList {
     getThisWeeksTasks(){
         let weekTasks = [];
         this.projectList.forEach(p => {
+            if (p.getName() === 'Today' || p.getName() === 'This week')
+                return
+            
             p.getTasks.forEach(t => {
                 if (isThisWeek(t.getDate())) {
                     weekTasks.push(t);
