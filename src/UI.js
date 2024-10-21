@@ -22,11 +22,17 @@ export default class UI {
                 project.getName() !== 'Inbox' &&
                 project.getName() !== 'Today' &&
                 project.getName() !== 'This Week' 
-            )
+            ){
+                this.createProjectCard(project);
+            }
         })
     }
 
-    loadTasks(){}
+    loadTasks(projectName){
+        this.todoList.getProject(projectName)
+        .getTaskList()
+        .forEach((task) => this.createTaskCard(task))
+    }
 
     loadProjectContent(){}
 
@@ -72,7 +78,7 @@ export default class UI {
         let projectUl = document.querySelector(".project-ul");
         
         let projectDiv = document.createElement("button");
-        projectDiv.classList.add("project");
+        projectDiv.classList.add("project-card");
         projectUl.appendChild(projectDiv);
 
         let projectLabel = document.createElement("p");
@@ -85,4 +91,10 @@ export default class UI {
         //Get data from inputs
 
     }
+    // Project Event listeners
+    openProject(projectName, projectButton){
+        
+    }
+    // Task Event Listeners
+    
 }
