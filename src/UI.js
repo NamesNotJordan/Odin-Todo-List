@@ -34,7 +34,9 @@ export default class UI {
         .forEach((task) => this.createTaskCard(task))
     }
 
-    loadProjectContent(){}
+    loadProjectContent(projectName){
+        
+    }
 
     // Clearing Content
     clear(){
@@ -78,7 +80,7 @@ export default class UI {
         let projectUl = document.querySelector(".project-ul");
         
         let projectDiv = document.createElement("button");
-        projectDiv.classList.add("project-card");
+        projectDiv.classList.add("project-button");
         projectUl.appendChild(projectDiv);
 
         let projectLabel = document.createElement("p");
@@ -93,7 +95,11 @@ export default class UI {
     }
     // Project Event listeners
     openProject(projectName, projectButton){
-        
+        const projectButtons = document.querySelectorAll('.project-button');
+        projectButtons.forEach((button) => button.classList.remove('active'));
+        projectButton.classList.add('active');
+
+        this.loadProjectContent(projectName);
     }
     // Task Event Listeners
     
