@@ -57,7 +57,7 @@ export default class TodoList {
         this.saveToStorage();
     }
 
-    getTodaysTasks(){
+    updateTodaysTasks(){
         this.getProject('Today').setTaskList([]); //Empty today's tasks
         this.projectList.forEach(p => {
             p.getTasks.forEach(t => {
@@ -68,9 +68,8 @@ export default class TodoList {
                 }
             });
         });
-        return todaysTasks;
     }
-    getThisWeeksTasks(){
+    updateThisWeeksTasks(){
         let weekTasks = [];
         this.projectList.forEach(p => {
             if (p.getName() === 'Today' || p.getName() === 'This week')
@@ -82,6 +81,5 @@ export default class TodoList {
                 }
             });
         });
-        return weekTasks;
     }
 }
