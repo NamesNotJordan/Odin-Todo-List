@@ -35,7 +35,7 @@ export default class UI {
     }
 
     loadProjectContent(projectName){
-        
+
     }
 
     // Clearing Content
@@ -94,12 +94,21 @@ export default class UI {
 
     }
     // Project Event listeners
+
     openProject(projectName, projectButton){
         const projectButtons = document.querySelectorAll('.project-button');
         projectButtons.forEach((button) => button.classList.remove('active'));
         projectButton.classList.add('active');
 
         this.loadProjectContent(projectName);
+    }
+    static openTodayProject(){
+        this.todoList.updateTodaysTasks();
+        this.openProject('Today', this);
+    }
+    static openThisWeekProject(){
+        this.todoList.updateThisWeeksTasks();
+        this.openProject('This Week', this);
     }
     // Task Event Listeners
     
