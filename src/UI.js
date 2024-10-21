@@ -35,7 +35,14 @@ export default class UI {
     }
 
     loadProjectContent(projectName){
+        // Update Heading
+        let projectHeading = document.getElementById('project-heading');
+        projectHeading.innerHTML = projectName;
 
+        //Add an "Add Task" button if no in the Today or Weekly view
+        if (projectName !== 'Today' && projectName !== 'This Week') {
+            
+        }
     }
 
     // Clearing Content
