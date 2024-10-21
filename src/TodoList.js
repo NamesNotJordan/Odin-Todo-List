@@ -14,15 +14,16 @@ export default class TodoList {
         }
         else {
             this.projectList = [new Project("Inbox"), new Project("Today"), new Project('This Week')];
+            this.saveToStorage();
         }
     }
     loadProjects() {
         if (localStorage.getItem("projects")) {
-            this.projectList = localStorage.getItem("projects")
+            this.projectList = JSON.parse(localStorage.getItem("projects"));
         }
     }
     saveToStorage() {
-        localStorage.setItem("projects", this.projectList);
+        localStorage.setItem("projects", JSON.stringify(this.projectList));
     }
 
     addProject(project){
@@ -31,11 +32,13 @@ export default class TodoList {
     }
     
     getProject(projectName){
+        this.loadProjects();
         index = this.projectList.find(p => p.getName = projectName);
         return this.projectList[index];
     }
 
-    deleteProject(targetProject){ 
+    deleteProject(targetProject){
+        this.loadProjects();
         projectList = projectList.filter(p => p !== targetProject);
         this.saveToStorage();
     }
@@ -60,8 +63,8 @@ export default class TodoList {
             p.getTasks.forEach(t => {
                 if (isToday(t.getDate())) {
                     let cloneName = `${t.getName()} [${p.getName}]`;
-                    let cloneTask = new Task()
-                    this.getProject('Today').addTask(t)
+                    let cloneTask = new Task(cloneName, t.getDescription(), t.getDate(), t.getPriority());
+                    this.getProject('Today').addTask(cloneTask);
                 }
             });
         });
