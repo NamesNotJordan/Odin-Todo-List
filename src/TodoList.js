@@ -60,7 +60,7 @@ export default class TodoList {
     updateTodaysTasks(){
         this.getProject('Today').setTaskList([]); //Empty today's tasks
         this.projectList.forEach(p => {
-            p.getTasks.forEach(t => {
+            p.getTasks().forEach(t => {
                 if (isToday(t.getDate())) {
                     let cloneName = `${t.getName()} [${p.getName}]`;
                     let cloneTask = new Task(cloneName, t.getDescription(), t.getDate(), t.getPriority());
@@ -70,16 +70,15 @@ export default class TodoList {
         });
     }
     updateThisWeeksTasks(){
-        let weekTasks = [];
-        this.projectList.forEach(p => {
-            if (p.getName() === 'Today' || p.getName() === 'This week')
-                return
-            
-            p.getTasks.forEach(t => {
-                if (isThisWeek(t.getDate())) {
-                    weekTasks.push(t);
+        this.getProject('This Week').setTaskList([]);
+        this.projectList.forEach((project) => {
+            project.getTasks().forEach((task) => {
+                if (isThisWeek(task.getDate())) {
+                    let cloneName = `${t.getName()} [${p.getName}]`;
+                    let cloneTask = new Task(cloneName, t.getDescription(), t.getDate(), t.getPriority());
+                    this.getProject('This Week').addTask(cloneTask);
                 }
-            });
-        });
+            })
+        })
     }
 }
