@@ -142,6 +142,16 @@ export default class UI {
         addProjectPopup.classList.add('active');
         addProjectButton.classList.add('active');
     }
+
+    closeAddProjectPopup(){
+        let addProjectPopup = document.querySelector('.add-project-popup');
+        let addProjectButton = document.querySelector('.add-project-button');
+        let addProjectPopupInput = document.querySelector('#add-project-input');
+        
+        addProjectButton.classList.remove('active');
+        addProjectPopup.classList.remove('active');
+        addProjectPopupInput.value = '';
+    }
     // Task Event Listeners
     
 }
