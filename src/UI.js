@@ -16,7 +16,9 @@ export default class UI {
     // Load content
     loadBase(){
         this.loadProjects();
-        
+        this.initProjectButtons();
+        this.openProject('Inbox', document.getElementById('inbox-button'));
+        document.addEventListener('keydown',this.handleEscape);
     }
 
     loadProjects(){
@@ -206,6 +208,10 @@ export default class UI {
 
     handleAddProjectPopupInput(e){
         if (e.key === 'Enter'){this.addProject()}
+    }
+
+    initProjectButtons(){
+
     }
 
     handleProjectButton(e){}
