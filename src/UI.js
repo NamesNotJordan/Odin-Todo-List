@@ -101,6 +101,8 @@ export default class UI {
         projectDiv.appendChild(projectLabel);
     }
 
+    // Project Event listeners
+
     addProject(){
         //Get data from inputs
         let addProjectPopupInput = document.querySelector('#add-project-input');
@@ -121,7 +123,9 @@ export default class UI {
         this.closeAddProjectPopup();
 
     }
-    // Project Event listeners
+
+    deleteProject(){}
+
     initAddProjectButton(){
         let addProjectButton = document.querySelector('.add-project-button');
         let addProjectPopupInput = document.querySelector('#add-project-input');
@@ -172,6 +176,39 @@ export default class UI {
     handleAddProjectPopupInput(e){
         if (e.key === 'Enter'){this.addProject()}
     }
+
+    handleProjectButton(e){}
+
+    openNav(){}
+
     // Task Event Listeners
-    
+    initAddTaskButtons(){}
+
+    openAddTaskPopup(){}
+
+    closeAddTaskPopup(){}
+
+    addTask(){}
+
+    handleAddTaskPopupInput(){}
+
+    initTaskButtons(){}
+
+    handleTaskButton(){}
+
+    setTaskComplete(){}
+
+    deleteTask(){}
+
+    openRenameInput(){}
+
+    closeRenameInput(){}
+
+    renameTask(){}
+
+    openSetDueDateInput(){}
+
+    closeSetDueDateInput(){}
+
+    setTaskDueDate(){}
 }
