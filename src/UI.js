@@ -133,6 +133,15 @@ export default class UI {
         this.todoList.updateThisWeeksTasks();
         this.openProject('This Week', this);
     }
+
+    openAddProjectPopup(){
+        let addProjectPopup = document.querySelector('.add-project-popup');
+        let addProjectButton = document.querySelector('.add-project-button');
+
+        this.closePopUps();
+        addProjectPopup.classList.add('active');
+        addProjectButton.classList.add('active');
+    }
     // Task Event Listeners
     
 }
