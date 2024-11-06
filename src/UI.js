@@ -14,7 +14,10 @@ export default class UI {
         this.activeProjectName = '';
     }
     // Load content
-    loadBase(){}
+    loadBase(){
+        this.loadProjects();
+        
+    }
 
     loadProjects(){
         this.todoList.getProjectList().forEach((project) =>{
@@ -52,6 +55,8 @@ export default class UI {
     }
 
     clearProjectContent(){
+        document.getElementById('project-heading').innerHTML='';
+        document.querySelector('.task-ul').innerHTML = '';
     }
 
     clearProjects(){
