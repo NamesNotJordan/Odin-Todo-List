@@ -88,7 +88,7 @@ export default class UI {
         taskCard.appendChild(taskLabel);
     }
 
-    createProjectCard(project) {
+    createProjectCard(projectName) {
         let projectUl = document.querySelector(".project-ul");
         
         let projectDiv = document.createElement("button");
@@ -97,12 +97,28 @@ export default class UI {
 
         let projectLabel = document.createElement("p");
         projectLabel.classList.add("project-label");
-        projectLabel.innerHTML = project.getName();
+        projectLabel.innerHTML = projectName;
         projectDiv.appendChild(projectLabel);
     }
 
     addProject(){
         //Get data from inputs
+        let addProjectPopupInput = document.querySelector('#add-project-input');
+        let projectName = addProjectPopupInput.value;
+
+        if (projectName === '') {
+            alert("Project name can't be empty")
+            return
+          }
+        
+        if (this.todoList.getProject(projectName)) {
+            addProjectPopupInput.value = '';
+            alert('There is already a project with that name');
+            return;
+        }
+        this.todoList.addProject(new Project(projectName));
+        this.createProjectCard(projectName);
+        this.closeAddProjectPopup();
 
     }
     // Project Event listeners
@@ -151,6 +167,10 @@ export default class UI {
         addProjectButton.classList.remove('active');
         addProjectPopup.classList.remove('active');
         addProjectPopupInput.value = '';
+    }
+
+    handleAddProjectPopupInput(e){
+        if (e.key === 'Enter'){this.addProject()}
     }
     // Task Event Listeners
     
