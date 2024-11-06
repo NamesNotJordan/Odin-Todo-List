@@ -106,6 +106,17 @@ export default class UI {
 
     }
     // Project Event listeners
+    initAddProjectButton(){
+        let addProjectButton = document.querySelector('.add-project-button');
+        let addProjectPopupInput = document.querySelector('#add-project-input');
+        let addProjectPopupButton = document.querySelector('#popup-add-project-button');
+        let cancelAddProjectPopupButton = document.querySelector('#popup-cancel-project-button');
+
+        addProjectButton.addEventListener('click', this.openAddProjectPopup);
+        addProjectPopupButton.addEventListener('click', this.addProject);
+        cancelAddProjectPopupButton.addEventListener('click', this.closeAddProjectPopup);
+        addProjectPopupInput.addEventListener('keypress', this.handleAddProjectPopupInput);
+    }
 
     openProject(projectName, projectButton){
         const projectButtons = document.querySelectorAll('.project-button');
