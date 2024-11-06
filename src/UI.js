@@ -34,7 +34,11 @@ export default class UI {
     loadTasks(projectName){
         this.todoList.getProject(projectName)
         .getTaskList()
-        .forEach((task) => this.createTaskCard(task))
+        .forEach((task) => this.createTaskCard(task));
+
+        if (projectName !== 'Today' && projectName !== 'This Week') {
+            this.initAddTaskButtons();
+        }
     }
 
     loadProjectContent(projectName){
@@ -42,10 +46,36 @@ export default class UI {
         let projectHeading = document.getElementById('project-heading');
         projectHeading.innerHTML = projectName;
 
-        //Add an "Add Task" button if no in the Today or Weekly view
+        //Add an "Add Task" button if not in the Today or Weekly view
         if (projectName !== 'Today' && projectName !== 'This Week') {
-            
+            let taskUL = document.querySelector('.task-ul');
+            //TODO: Add Icon
+            taskUL.innerHTML =  `
+                <button class="button-add-task" id="button-add-task">
+                    <i class=""></i> 
+                    Add Task
+                </button>
+                <div class="add-task-popup" id="add-task-popup">
+                    <input
+                        class="input-add-task-popup"
+                        id="input-add-task-popup"
+                        type="text"
+                    />
+                    <div class="add-task-popup-buttons">
+                        <button class="button-add-task-popup" id="button-add-task-popup">
+                            Add
+                        </button>
+                        <button
+                        class="button-cancel-task-popup"
+                        id="button-cancel-task-popup"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>`
         }
+
+        this.loadTasks(projectName);
     }
 
     // Clearing Content
@@ -75,6 +105,7 @@ export default class UI {
         if (e.key === 'Escape') 
             this.closePopUps();
     }
+
     // Create Content
     createTaskCard(task){
         let taskList = document.querySelector(".task-list");
@@ -101,7 +132,7 @@ export default class UI {
         projectDiv.appendChild(projectLabel);
     }
 
-    // Project Event listeners
+    // Project Events
 
     addProject(){
         //Get data from inputs
