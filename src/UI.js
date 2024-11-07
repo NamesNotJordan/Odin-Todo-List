@@ -98,9 +98,25 @@ export default class UI {
         document.querySelector(".task-ul").innerHTML ='';
     }
 
-    closePopUps(){}
+    closePopUps(){
+        this.closeAddProjectPopup();
+        if(document.querySelector("#button-add-task")){
+            this.closeAddTaskPopup();
+        }
+
+        if (document.querySelector(".task-ul").innerHTML !== ''){
+            this.closeAllInputs();
+        }
+    }
     
-    closeAllInputs(){}
+    closeAllInputs(){
+        let taskButtons = document.querySelectorAll('.task-button');
+
+        taskButtons.forEach((button) =>{
+            this.closeRenameInput();
+            this.closeSetDueDateInput();
+        })
+    }
 
     handleEscape(e){
         if (e.key === 'Escape') 
@@ -111,7 +127,7 @@ export default class UI {
     createTaskCard(taskName, taskDueDate){
         let taskList = document.querySelector(".task-ul");
         let taskCard = document.createElement("button");
-        taskCard.classList.add("task","cyber-card");
+        taskCard.classList.add("task-button","cyber-card");
 
         // Task Content and input for renaming
         let taskContentContainer = document.createElement("div");
@@ -130,6 +146,7 @@ export default class UI {
         let taskDateContainer = document.createElement("div");
         let taskDueDateLabel = document.createElement("p");
         taskDueDateLabel.className = "due-date-text";
+        taskDueDateLabel.innerText = taskDueDate;
 
         let taskDueDateInput = document.createElement("input");
         taskDueDateInput.classList = "due-date-input";
