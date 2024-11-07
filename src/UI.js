@@ -4,8 +4,6 @@ import Task from "./Task";
 import {format} from "date-fns";
 
 //Functionality:
-//TODO:View all projects
-//TODO:View all tasks in a project
 //TODO:Exapnd task for more details
 
 export default class UI {
@@ -31,12 +29,13 @@ export default class UI {
                 this.createProjectCard(project);
             }
         })
+        this.initAddProjectButton();
     }
 
     loadTasks(projectName){
         this.todoList.getProject(projectName)
         .getTaskList()
-        .forEach((task) => this.createTaskCard(task));
+        .forEach((task) => this.createTaskCard(task.getName(), task.getDate()));
 
         if (projectName !== 'Today' && projectName !== 'This Week') {
             this.initAddTaskButtons();
@@ -109,16 +108,38 @@ export default class UI {
     }
 
     // Create Content
-    createTaskCard(task){
-        let taskList = document.querySelector(".task-list");
-        let taskCard = document.createElement("li");
+    createTaskCard(taskName, taskDueDate){
+        let taskList = document.querySelector(".task-ul");
+        let taskCard = document.createElement("button");
         taskCard.classList.add("task","cyber-card");
-        taskList.appendChild(taskCard);
 
+        // Task Content and input for renaming
+        let taskContentContainer = document.createElement("div");
         let taskLabel = document.createElement("p");
         taskLabel.classList.add("task-name");
-        taskLabel.innerHTML = task.getName();
-        taskCard.appendChild(taskLabel);
+        taskLabel.innerHTML = taskName;
+
+        let taskNameInput = document.createElement("input");
+        taskNameInput.type = "text";
+        taskNameInput.classList.add("task-name-input");
+        
+        taskContentContainer.appendChild(taskLabel);
+        taskContentContainer.appendChild(taskNameInput);
+
+        // Container for date attribute
+        let taskDateContainer = document.createElement("div");
+        let taskDueDateLabel = document.createElement("p");
+        taskDueDateLabel.className = "due-date-text";
+
+        let taskDueDateInput = document.createElement("input");
+        taskDueDateInput.classList = "due-date-input";
+        taskDueDateInput.type = "date";
+
+        taskDateContainer.appendChild(taskDueDateLabel);
+        taskDateContainer.appendChild(taskDueDateInput);
+        taskList.appendChild(taskCard);
+
+        this.initTaskButtons();
     }
 
     createProjectCard(projectName) {
@@ -132,6 +153,8 @@ export default class UI {
         projectLabel.classList.add("project-label");
         projectLabel.innerHTML = projectName;
         projectDiv.appendChild(projectLabel);
+
+        this.initProjectButtons();
     }
 
     // Project Events
