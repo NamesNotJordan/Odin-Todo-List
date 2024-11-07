@@ -197,7 +197,14 @@ export default class UI {
 
     }
 
-    deleteProject(){}
+    deleteProject(projectName, button){
+        if (button.classList.contains('active')){
+            this.clearProjectContent();
+        }
+        this.todoList.deleteProject(this.todoList.getProject(projectName));
+        this.clearProjects();
+        this.loadProjects();
+    }
 
     initAddProjectButton(){
         let addProjectButton = document.querySelector('.add-project-button');
