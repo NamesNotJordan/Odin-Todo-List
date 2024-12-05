@@ -268,16 +268,19 @@ export default class UI {
         todayButton.addEventListener('click', ()=> { this.openTodayProject(todayButton)});
         weekButton.addEventListener('click', ()=> { this.openThisWeekProject(weekButton)});
         projectButtons.forEach((projectButton) =>{
-            projectButton.addEventListener('click', this.handleProjectButton)
+            projectButton.addEventListener('click', (e) => {
+                let projectName = projectButton.children[0].textContent;
+                // TODO: Add delete button
+                if (e.target.classList.contains('delete-task-thing')) {
+                    
+                }
+
+                this.openProject(projectName, projectButton);
+            })
         })
     }
 
-    handleProjectButton(e){
-        let projectName = this.children[0].textContent;
-        // Todo: Add delete thingy
-
-        openProject
-    }
+    handleProjectButton(e){}
 
     // Task Event Listeners
     initAddTaskButtons(){}
