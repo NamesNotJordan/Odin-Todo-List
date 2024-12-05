@@ -295,15 +295,30 @@ export default class UI {
         addTaskPopupInput.addEventListener('keypress', this.handleAddTaskPopupInput)
     }
 
-    openAddTaskPopup(){}
+    openAddTaskPopup(){
+        let addTaskPopup = document.getElementById('add-task-popup');
+        let addTaskButton = document.getElementById('button-add-task');
 
-    closeAddTaskPopup(){}
+        this.closePopUps();
+        addTaskPopup.classList.add('active');
+        addTaskButton.classList.add('active');
+    }
+
+    closeAddTaskPopup(){
+        let addTaskPopup = document.getElementById('add-task-popup')
+        let addTaskButton = document.getElementById('button-add-task')
+        let addTaskInput = document.getElementById('input-add-task-popup')
+
+        addTaskPopup.classList.remove('active')
+        addTaskButton.classList.remove('active')
+        addTaskInput.value = '';
+    }
 
     addTask(){}
 
     handleAddTaskPopupInput(e){
         if (e.key === 'Enter') {
-            this.addTask;
+            this.addTask();
         }
     }
 
