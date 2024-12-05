@@ -314,7 +314,25 @@ export default class UI {
         addTaskInput.value = '';
     }
 
-    addTask(){}
+    addTask(){
+        let projectName = document.getElementById('project-heading').textContent;
+        let addTaskPopupInput = document.getElementById('input-add-task-popup');
+        let taskName = addTaskPopupInput.value;
+
+        if (taskName === '') {
+            alert("Task name can't be empty")
+            return
+        }
+
+        if (this.todoList.getProject(projectName).getTask(taskName)) {
+            alert('This project already has that task. PLease enter a different task name.');
+            addTaskPopupInput.value = '';
+            return
+        }
+
+        this.todoList.addTask(projectName, new Task(taskName,'','No Date', 0))
+        this.closeAddTaskPopup();
+    }
 
     handleAddTaskPopupInput(e){
         if (e.key === 'Enter') {
