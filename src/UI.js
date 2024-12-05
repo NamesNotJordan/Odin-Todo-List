@@ -280,10 +280,20 @@ export default class UI {
         })
     }
 
-    handleProjectButton(e){}
+    //handleProjectButton(e){}
 
     // Task Event Listeners
-    initAddTaskButtons(){}
+    initAddTaskButtons(){
+        let addTaskButton = document.getElementById('button-add-task');
+        let addTaskPopupButton = document.getElementById('button-add-task-popup');
+        let cancelTaskPopupButton = document.getElementById('button-cancel-task-popup');
+        let addTaskPopupInput = document.getElementById('input-add-task-popup');
+
+        addTaskButton.addEventListener('click', this.openAddTaskPopup);
+        addTaskPopupButton.addEventListener('click', this.addTask);
+        cancelTaskPopupButton.addEventListener('click', this.closeAddTaskPopup);
+        addTaskPopupInput.addEventListener('keypress', this.handleAddTaskPopupInput)
+    }
 
     openAddTaskPopup(){}
 
@@ -291,7 +301,11 @@ export default class UI {
 
     addTask(){}
 
-    handleAddTaskPopupInput(){}
+    handleAddTaskPopupInput(e){
+        if (e.key === 'Enter') {
+            this.addTask;
+        }
+    }
 
     initTaskButtons(){}
 
