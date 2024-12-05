@@ -378,8 +378,13 @@ export default class UI {
             })
         );
 
-        taskNameInputs.forEach();
-        
+        taskNameInputs.forEach((taskNameInput) => 
+            taskNameInput.addEventListener('keypress', (e) => {
+
+            }));
+
+        dueDateInputs.forEach((dueDateInput) =>
+            dueDateInput.addEventListener('change', this.setTaskDueDate))
 
     }
 
@@ -393,11 +398,11 @@ export default class UI {
 
     closeRenameInput(){}
 
-    renameTask(){}
+    //renameTask(){}
 
     openSetDueDateInput(taskButton){}
 
     closeSetDueDateInput(){}
 
-    setTaskDueDate(){}
+    //setTaskDueDate(){}
 }
