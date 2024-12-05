@@ -131,6 +131,7 @@ export default class UI {
 
         // Task Content and input for renaming
         let taskContentContainer = document.createElement("div");
+        taskContentContainer.classList.add('task-content');
         let taskLabel = document.createElement("p");
         taskLabel.classList.add("task-name");
         taskLabel.innerHTML = taskName;
@@ -144,6 +145,7 @@ export default class UI {
 
         // Container for date attribute
         let taskDateContainer = document.createElement("div");
+        taskDateContainer.classList.add('task-date-container')
         let taskDueDateLabel = document.createElement("p");
         taskDueDateLabel.className = "due-date-text";
         taskDueDateLabel.innerText = taskDueDate;
@@ -154,6 +156,9 @@ export default class UI {
 
         taskDateContainer.appendChild(taskDueDateLabel);
         taskDateContainer.appendChild(taskDueDateInput);
+        
+        taskCard.appendChild(taskContentContainer);
+        taskCard.appendChild(taskDateContainer);
         taskList.appendChild(taskCard);
 
         this.initTaskButtons();
@@ -340,21 +345,57 @@ export default class UI {
         }
     }
 
-    initTaskButtons(){}
+    initTaskButtons(){
+        let taskButtons = document.querySelectorAll('.task-button');
+        let taskNameInputs = document.querySelectorAll('.task-name-input');
+        let dueDateInputs = document.querySelectorAll('.due-date-input');
 
-    handleTaskButton(){}
+        taskButtons.forEach((taskButton) =>
+            taskButton.addEventListener('click', (e) => {
+                // Complete
+                //Todo: Add icons
+                if (e.target.classList.contains('check-button')) {
+                    this.setTaskComplete(taskButton);
+                    return
+                }
 
-    setTaskComplete(){}
+                // Delete
+                if(e.target.classList.contains('cross-icon')) {
+                    this.deleteTask(taskButton);
+                    return
+                }
 
-    deleteTask(){}
+                // Rename
+                if (e.target.classList.contains('task-content')) {
+                    this.openRenameInput(taskButton);
+                    return
+                }
 
-    openRenameInput(){}
+                // Re-Schedule
+                if (e.target.classList.contains('task-date-container')) {
+                    this.openSetDueDateInput(taskButton);
+                }
+            })
+        );
+
+        taskNameInputs.forEach();
+        
+
+    }
+
+    //handleTaskButton(){}
+
+    setTaskComplete(taskButton){}
+
+    deleteTask(taskButton){}
+
+    openRenameInput(taskButton){}
 
     closeRenameInput(){}
 
     renameTask(){}
 
-    openSetDueDateInput(){}
+    openSetDueDateInput(taskButton){}
 
     closeSetDueDateInput(){}
 
