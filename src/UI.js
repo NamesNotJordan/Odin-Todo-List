@@ -162,14 +162,15 @@ export default class UI {
     createProjectCard(projectName) {
         let projectUl = document.querySelector(".project-ul");
         
-        let projectDiv = document.createElement("button");
-        projectDiv.classList.add("project-button");
-        projectUl.appendChild(projectDiv);
+        let projectButton = document.createElement("button");
+        projectButton.classList.add("project-button");
+        projectButton.classList.add("user-project");
+        projectUl.appendChild(projectButton);
 
         let projectLabel = document.createElement("p");
         projectLabel.classList.add("project-label");
         projectLabel.innerHTML = projectName;
-        projectDiv.appendChild(projectLabel);
+        projectButton.appendChild(projectLabel);
 
         this.initProjectButtons();
     }
@@ -225,13 +226,13 @@ export default class UI {
 
         this.loadProjectContent(projectName);
     }
-    static openTodayProject(){
+    openTodayProject(button){
         this.todoList.updateTodaysTasks();
-        this.openProject('Today', this);
+        this.openProject('Today', button);
     }
-    static openThisWeekProject(){
+    openThisWeekProject(button){
         this.todoList.updateThisWeeksTasks();
-        this.openProject('This Week', this);
+        this.openProject('This Week', button);
     }
 
     openAddProjectPopup(){
@@ -258,12 +259,25 @@ export default class UI {
     }
 
     initProjectButtons(){
+        let inboxButton = document.getElementById('inbox-button');
+        let todayButton = document.getElementById('today-button');
+        let weekButton = document.getElementById('week-button');
+        let projectButtons = document.querySelectorAll('.user-project');
 
+        inboxButton.addEventListener('click', () =>{ this.openProject('Inbox',inboxButton)});
+        todayButton.addEventListener('click', ()=> { this.openTodayProject(todayButton)});
+        weekButton.addEventListener('click', ()=> { this.openThisWeekProject(weekButton)});
+        projectButtons.forEach((projectButton) =>{
+            projectButton.addEventListener('click', this.handleProjectButton)
+        })
     }
 
-    handleProjectButton(e){}
+    handleProjectButton(e){
+        let projectName = this.children[0].textContent;
+        // Todo: Add delete thingy
 
-    openNav(){}
+        openProject
+    }
 
     // Task Event Listeners
     initAddTaskButtons(){}
