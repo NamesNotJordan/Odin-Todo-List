@@ -352,6 +352,7 @@ export default class UI {
 
         taskButtons.forEach((taskButton) =>
             taskButton.addEventListener('click', (e) => {
+                // Todo: Consider combining delete and complete
                 // Complete
                 //Todo: Add icons
                 if (e.target.classList.contains('check-button')) {
@@ -390,7 +391,26 @@ export default class UI {
 
     //handleTaskButton(){}
 
-    setTaskComplete(taskButton){}
+    setTaskComplete(taskButton){
+        let projectName = document.getElementById('project-heading');
+        let taskName = taskButton.children[0].children[0].textContent;
+
+        // If today or week, extract project name from task name
+        if (projectName === 'Today' || projectName === 'This Week') {
+            let parentProjectName = taskName.split('[')[1].split(']')[0];
+            this.todoList.deleteTask(parentProjectName, taskName.split(' [')[0]);
+            if (projectName === 'Today') {
+                this.todoList.updateTodaysTasks();
+            } else {
+                this.todoList.updateThisWeeksTasks();
+            }
+        }
+        else {
+            this.todoList.deleteTask(projectName, taskName);
+        }
+        this.clearTasks();
+        this.loadTasks();
+    }
 
     deleteTask(taskButton){}
 
