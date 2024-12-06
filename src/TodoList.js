@@ -3,9 +3,6 @@ import Task from "./Task";
 import Project from "./Project";
 import { isToday, isThisWeek} from "date-fns";
 
-//TODO:Edit Tasks
-//TODO:Edit Projects
-//TODO:Add lists to Local Storage when creating or adding
 
 export default class TodoList {
     constructor(){
