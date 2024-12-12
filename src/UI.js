@@ -448,7 +448,14 @@ export default class UI {
         taskNameInput.textContent = taskName;
     }
 
-    closeRenameInput(){}
+    closeRenameInput(taskButton){
+        let taskNamePara = taskButton.children[0].children[0];
+        let taskNameInput = taskButton.children[0].children[1];
+
+        taskNamePara.classList.remove('active');
+        taskNameInput.classList.remove('active');
+        taskNameInput.textContent = '';
+    }
 
     //renameTask(){}
 
