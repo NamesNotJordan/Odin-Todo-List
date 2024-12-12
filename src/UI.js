@@ -381,7 +381,36 @@ export default class UI {
 
         taskNameInputs.forEach((taskNameInput) => 
             taskNameInput.addEventListener('keypress', (e) => {
+                if (e.key !== 'Enter'){
+                    return
+                }
+                
+                let projectName = document.getElementById('project-heading');
+                let taskName = taskNameInput.previousElementSibling.textContent;
+                let newTaskName = taskNameInput.value;
 
+                if (newTaskName === ''){
+                    alert('Task names must be at least 1 character long');
+                    return;
+                }
+                if ( this.todoList.getProject(projectName).getTask(taskName) ) {
+                    alert('That task already exists. Task names must be different');
+                    taskNameInput.value = '';
+                    return;
+                }
+
+                if (projectName === 'Today' || projectName === 'This Week') {
+                    let parentProjectName = taskName.split('[')[1].split(']')[0];
+                    let actualTaskName = taskName.split(' [')[0];
+
+                    this.todoList.renameTask(projectName, taskName, `${newTaskName} [${parentProjectName}]`);
+                    this.todoList.renameTask(parentProjectName, actualTaskName, newTaskName);
+                }else {
+                    this.todoList.renameTask(projectName, taskName, newTaskName);
+                }
+                this.clearTasks();
+                this.loadTasks(projectName);
+                this.closeRenameInput(taskNameInput.parentNode.parentNode);
             }));
 
         dueDateInputs.forEach((dueDateInput) =>
