@@ -497,7 +497,13 @@ export default class UI {
         dueDateInput.classList.add('active');
     }
 
-    closeSetDueDateInput(){}
+    closeSetDueDateInput(taskButton){
+        let dueDatePara = taskButton.children[1].children[0];
+        let dueDateInput = taskButton.children[1].children[1];
+
+        dueDatePara.classList.remove('active');
+        dueDateInput.classList.remove('active');
+    }
 
     //setTaskDueDate(){}
 }
