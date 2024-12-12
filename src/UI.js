@@ -488,7 +488,14 @@ export default class UI {
 
     //renameTask(){}
 
-    openSetDueDateInput(taskButton){}
+    openSetDueDateInput(taskButton){
+        let dueDatePara = taskButton.children[1].children[0];
+        let dueDateInput = taskButton.children[1].children[1];
+        
+        this.closePopUps();
+        dueDatePara.classList.add('active');
+        dueDateInput.classList.add('active');
+    }
 
     closeSetDueDateInput(){}
 
