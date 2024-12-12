@@ -432,7 +432,21 @@ export default class UI {
         this.loadTasks();
     }
 
-    openRenameInput(taskButton){}
+    openRenameInput(taskButton){
+        let taskNamePara = taskButton.children[0].children[0];
+        let taskName = taskNamePara.textContent;
+        let taskNameInput = taskButton.children[0].children[1];
+        let projectName = document.getElementById('project-heading').textContent;
+
+        if (projectName === 'Today' || projectName === 'This Week') {
+            taskName = taskName.split(' [')[0];
+        }
+
+        this.closePopUps();
+        taskNamePara.classList.add('active');
+        taskNameInput.classList.add('active');
+        taskNameInput.textContent = taskName;
+    }
 
     closeRenameInput(){}
 
