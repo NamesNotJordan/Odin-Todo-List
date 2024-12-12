@@ -412,7 +412,25 @@ export default class UI {
         this.loadTasks();
     }
 
-    deleteTask(taskButton){}
+    deleteTask(taskButton){
+        let projectName = document.getElementById('project-heading');
+        let taskName = taskButton.children[0].children[0].textContent;
+
+        if (projectName === 'Today' || projectName === 'This Week') {
+            let parentProjectName = taskName.split('[')[1].split(']')[0];
+            this.todoList.deleteTask(parentProjectName, taskName.split(' [')[0]);
+            if (projectName === 'Today') {
+                this.todoList.updateTodaysTasks();
+            } else {
+                this.todoList.updateThisWeeksTasks();
+            }
+        }
+        else {
+            this.todoList.deleteTask(projectName, taskName);
+        }
+        this.clearTasks();
+        this.loadTasks();
+    }
 
     openRenameInput(taskButton){}
 
