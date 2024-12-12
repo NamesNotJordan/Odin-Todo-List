@@ -54,6 +54,11 @@ export default class TodoList {
         this.saveToStorage();
     }
 
+    renameTask(projectName, taskName, newTaskName){
+        this.getProject(projectName).getTask(taskName).setName(newTaskName);
+        this.saveToStorage();
+    }
+
     updateTodaysTasks(){
         this.getProject('Today').setTaskList([]); //Empty today's tasks
         this.projectList.forEach(p => {
