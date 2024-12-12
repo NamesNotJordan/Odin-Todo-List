@@ -385,7 +385,7 @@ export default class UI {
                     return
                 }
                 
-                let projectName = document.getElementById('project-heading');
+                let projectName = document.getElementById('project-heading').textContent;
                 let taskName = taskNameInput.previousElementSibling.textContent;
                 let newTaskName = taskNameInput.value;
 
@@ -414,7 +414,32 @@ export default class UI {
             }));
 
         dueDateInputs.forEach((dueDateInput) =>
-            dueDateInput.addEventListener('change', this.setTaskDueDate))
+            dueDateInput.addEventListener('change', ()=> {
+                let taskButton = dueDateInput.parentNode.parentNode;
+                let projectName = document.getElementById('project-heading').textContent;
+                let taskName = taskButton.children[0].children[0];
+                let newDueDate = format(new Date(dueDateInput.value), 'dd/MM/yyyy');
+                
+                if (projectName === 'Today' || projectName === 'This Week') {
+                    let actualProjectName = taskName.split('[')[1].split(']')[0];
+                    let actualTaskName = taskName.split(' [')[0];
+
+                    this.todoList.setTaskDate(projectName, taskName, newDueDate);
+                    this.todoList.setTaskDate(actualProjectName, actualTaskName, newDueDate);
+
+                    if (projectName === 'Today'){
+                        this.todoList.updateTodaysTasks();
+                    } else {
+                        this.todoList.updateThisWeeksTasks();
+                    }
+                }
+                else {
+                    this.todoList.setTaskDate(projectName, taskName, newDueDate);
+                }
+                this.clearTasks();
+                this.loadTasks(projectName);
+                this.closeSetDueDateInput(taskButton);
+            }))
 
     }
 
